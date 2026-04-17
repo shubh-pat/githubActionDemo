@@ -1,8 +1,21 @@
-name: hello-world
-'on': push
+name: Hello World Workflow
+
+# Trigger workflow on push or pull request to the main branch
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 jobs:
-  my-job: null
-runs-on: ubuntu-latest
-steps:
-  - name: my-step
-run: echo "Hello World"
+  say-hello:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Run a simple Hello World command
+      - name: Print Hello World
+        run: echo "Hello, World!"
